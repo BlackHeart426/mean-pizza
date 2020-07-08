@@ -17,9 +17,13 @@ module.exports.create = async function(req, res) {
   try {
     const position = await new Position({
       name: req.body.name,
+      subtitle: req.body.subtitle,
+      description: req.body.description,
+      sale: req.body.sale,
       cost: req.body.cost,
       category: req.body.category,
-      user: req.user.id
+      user: req.user.id,
+      imageSrc: req.file ? req.file.path : ''
     }).save()
     res.status(201).json(position)
   } catch (e) {
@@ -39,10 +43,22 @@ module.exports.remove = async function(req, res) {
 }
 
 module.exports.update = async function(req, res) {
+  console.log(req.file.path)
+  const updated = {
+    name: req.body.name,
+    description: req.body.description,
+    subtitle: req.body.subtitle,
+    sale: req.body.sale,
+    cost: req.body.cost,
+  }
+
+  if (req.file) {
+    updated.imageSrc = req.file.path
+  }
   try {
     const position = await Position.findOneAndUpdate(
       {_id: req.params.id},
-      {$set: req.body},
+      {$set: updated},
       {new: true}
     )
     res.status(200).json(position)

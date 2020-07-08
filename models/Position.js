@@ -10,6 +10,22 @@ const positionSchema = new Schema({
     type: Number,
     required: true
   },
+  description: {
+    type: String,
+    required: true
+  },
+  subtitle: {
+    type: String,
+    required: true
+  },
+  sale: {
+    type: Number,
+    required: true
+  },
+  imageSrc: {
+    type: String,
+    default: ''
+  },
   category: {
     ref: 'categories',
     type: Schema.Types.ObjectId
