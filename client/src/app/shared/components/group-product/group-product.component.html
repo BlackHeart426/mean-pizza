@@ -1,0 +1,22 @@
+<div *ngIf="products.length; else loading" [attr.id]="category._id">
+  <mat-card-title #target>{{category.name}}</mat-card-title>
+  <mat-grid-list cols="4" rowHeight="600px">
+    <mat-grid-tile *ngFor="let product of products">
+      <app-card-product
+        [subtitle]="product.subtitle"
+        [imageLink]="product.imageSrc"
+        [description]="product.description"
+        [price]="product.cost"
+        [sale]="product.sale"
+        [title]="product.name"
+        [category]="product.category"
+        [id]="product._id"
+        [counter]="getCounter(listProductInCart$ | async, product._id)"
+      ></app-card-product>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</div>
+<ng-template #loading>
+  Загрузка данных...
+</ng-template>

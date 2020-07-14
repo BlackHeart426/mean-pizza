@@ -1,0 +1,105 @@
+.counter-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  float: right;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 21px;
+  font-weight: 700;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  height: 28px;
+}
+
+.column-small {
+  float: left;
+  width: 33.33%;
+  padding: 0px;
+}
+
+.button-small {
+  height: 23px;
+  width: 23px;
+  position: relative;
+
+}
+
+.mat-icon-small {
+  height: 19px;
+  width: 20px;
+  position: absolute;
+  left: -3px;
+  top: -1px;
+}
+
+.column {
+  float: left;
+  //width: 33.33%;
+  //padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.counter-left {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 1px solid #b3e0ea;
+  border-radius: 4px;
+  padding: 0;
+  width: 24px;
+  height: 100%;
+  cursor: pointer;
+  -webkit-transition: background-color .1s ease;
+  transition: background-color .1s ease;
+}
+
+.counter-center {
+  //margin: 0 5px;
+  width: 38px;
+  text-align: center;
+  color: rgba(16,35,39,.7);
+}
+
+.counter-right {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 1px solid #b3e0ea;
+  border-radius: 4px;
+  padding: 0;
+  width: 24px;
+  height: 100%;
+  cursor: pointer;
+  -webkit-transition: background-color .1s ease;
+  transition: background-color .1s ease;
+}

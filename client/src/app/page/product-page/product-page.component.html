@@ -1,0 +1,45 @@
+<div class="product-content" *ngIf="!loading">
+  <div
+    class="left left-content"
+    >
+    <img *ngIf="product.imageSrc.length; else basicImage" style="cursor: pointer;background-repeat: no-repeat;" mat-card-image src="{{ product.imageSrc }}">
+    <ng-template #basicImage>
+      <img style="cursor: pointer"mat-card-image src="../../../../assets/image/patternCover.png">
+    </ng-template>
+  </div>
+  <div class="right">
+    <div class="content">
+      <mat-card-title class="title">
+        {{product.name}}
+      </mat-card-title>
+
+      <div class="subtitle">
+        <mat-card-subtitle>
+          {{product.subtitle}}
+        </mat-card-subtitle>
+      </div>
+      <div class="description">
+        {{product.description}}
+      </div>
+
+    </div>
+    <div class="action">
+      <a [routerLink]="['/menu']" mat-stroked-button >Вернуться в меню</a>
+      <div class="action-content">
+        <div class="price" [ngClass]="{priceSale: product.sale}">
+          {{product.cost}}  ₽
+        </div>
+        <div class="sale" *ngIf="product.sale">
+          {{product.sale}}  ₽
+        </div>
+        <button mat-stroked-button color="primary" (click)="addToCart(product)">В корзину</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="loading">
+  Загрузка данных...
+</div>

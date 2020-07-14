@@ -1,0 +1,93 @@
+<div class="container">
+
+  <mat-grid-list cols="2" rowHeight="610px">
+
+    <mat-grid-tile style="left: 20px">
+      <div *ngIf="form; else loading">
+        <app-card-product
+          [title]="form.get('title').value"
+          [subtitle]="form.value.subtitle"
+          [description]="form.value.description"
+          [price]="form.value.price"
+          [sale]="form.value.sale"
+          [imageLink]="imageLink"
+        ></app-card-product>
+      </div>
+
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div style="width: 100%; margin-top: 100px; margin-bottom: 20px">
+
+        <button (click)="backLink()" mat-stroked-button style="float: right">
+          Вернуться назад
+        </button>
+        <div *ngIf="form; else loading">
+          <form [formGroup]="form" (ngSubmit)="submit()" >
+            <h1>Добавление продукта</h1>
+
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Название продукта" value="" formControlName="title">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <textarea multiple="false" matInput placeholder="Введите описание продукта" formControlName="description"></textarea>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Введите короткое описание продукта" value="" formControlName="subtitle">
+            </mat-form-field>
+
+
+            <mat-form-field class="example-full-width">
+              <input matInput type="number" placeholder="Введите цену продукта" value="" formControlName="price">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+              <input matInput  type="number"  placeholder="Введите скидку продукта" value="" formControlName="sale">
+            </mat-form-field>
+
+            <div
+              class="form-control"
+            >
+              <mat-form-field>
+                <mat-label>Категория</mat-label>
+                <mat-select [formControl]="category">
+                  <mat-option *ngFor="let categoryData of categories" [value]="categoryData.url">
+                    {{categoryData.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div
+              class="form-control"
+            >
+              <mat-label>Выберите изображение</mat-label>
+              <br/>
+              <app-file-upload (complete)="onFileComplete($event)" ></app-file-upload>
+            </div>
+            <button
+              type="submit"
+              mat-raised-button
+              color="primary"
+              class="btn-block"
+              [disabled]="form.invalid || imageLink.length === 0 || this.category.invalid"
+            >Обновить данные продукта</button>
+
+          </form>
+        </div>
+
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</div>
+
+
+
+
+
+<ng-template #loading>
+  <p class="text-center">Идет загрузка...</p>
+</ng-template>
+

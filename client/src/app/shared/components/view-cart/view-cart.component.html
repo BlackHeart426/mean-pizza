@@ -1,0 +1,48 @@
+
+<div class="view-container">
+  <div class="content">
+    <div class="product" *ngFor="let item of itemsCart">
+      <div class="row">
+        <div class="product-left column">
+          <div class="img">
+            <img src="{{item.image}}" width="80px">
+          </div>
+        </div>
+        <div class="counter" style="padding-top: 25px; padding-left: 120px;">
+          <app-counter
+            (onChanged)="onChangedCounter($event, item.uuid)"
+            [counter]="item.counter"
+          ></app-counter>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="product-center column" style="float: left">
+
+          <div class="title">
+            {{item.name}}
+          </div>
+        </div>
+        <div class="product-right column" style="float: right">
+          <div class="price">
+            {{item.price * item.counter}} ₽
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <mat-divider></mat-divider>
+  <div class="net-worth">
+    <div>Сумма корзины:</div>
+<!--    <div>{{netWorthProducts$ | async}} ₽</div>-->
+    <div>{{netWorth}} ₽</div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="action" appRedColor (click)="clearCart()">
+    <div >Очистить корзину:</div>
+    <button  [disabled]="itemsCart.length === 0" mat-icon-button aria-label="Example icon button with a home icon">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>

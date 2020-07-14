@@ -1,0 +1,74 @@
+<div class="cart-container">
+  <div class="cart-content">
+    <div class="price">Корзина</div>
+
+    <div class="cart-item" *ngFor="let item of itemsCart">
+      <div class="row">
+        <div class="cart-item-img column-item-left">
+          <img src="{{item.image}}" height="170px" width="200px" style="border-radius: 5px">
+        </div>
+        <div class="cart-item-content column-item-center">
+          <div class="title-item">
+            <div class="row">
+              <div class="name-item column-item-center">
+                {{ item.name }}
+              </div>
+              <div  class="column">
+                <button mat-icon-button color="warn" (click)="remove(item.uuid)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+
+            </div>
+          </div>
+          <div class="description-item" style="padding-left: 10px">
+            {{ item.description }}
+          </div>
+
+        </div>
+        <div class=" column-item-right">
+          <div class="row">
+            <div class="counter-item column-item-left">
+              <app-counter (onChanged)="onChanged($event, item.uuid)"  *ngIf="item.counter > 0" [counter]="item.counter"></app-counter>
+            </div>
+            <div class="action-item column price">
+              {{ item.price * item.counter  }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <span> </span>
+      <span></span>
+    </div>
+    <ng-template #emptyCart>
+      Товаров в корзине нет
+    </ng-template>
+  </div>
+
+
+</div>
+<div class="footer-cart"  >
+  <div class="counter-persons" style="margin-bottom: 0; padding-top: 5px">
+      <div class="column-left title">Количество персон</div>
+      <div class="column counter">
+        <app-counter (onChanged)="onChangedPerson($event)" [counter]="persons"></app-counter>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="footer-action">
+      <div class="row">
+        <div class="column-left title">
+          <button mat-stroked-button color="primary" class="btn-mat " (click)="backMenu()">Вернуться в меню</button>
+        </div>
+        <div class="column price">
+          <div>{{netWorthProducts$ | async }} ₽</div>
+        </div>
+        <div class="column">
+          <button mat-raised-button color="primary" class="btn-mat " (click)="checkout()">Оформить заказ</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+

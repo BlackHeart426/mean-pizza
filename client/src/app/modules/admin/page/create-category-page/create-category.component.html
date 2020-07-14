@@ -1,0 +1,58 @@
+<div style="padding-top: 40px">
+
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Создание новой категории</h1>
+
+
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Наименование категории" value="" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="URL адрес категории" value="" formControlName="url">
+    </mat-form-field>
+
+<!--    <div-->
+<!--      class="form-control"-->
+<!--      [ngClass]="{invalid: form.get('url').touched && form.get('url').invalid}"-->
+<!--    >-->
+<!--      <label for="url">URL адрес категории:</label>-->
+<!--      <input id="url" type="text" formControlName="url">-->
+<!--      <div-->
+<!--        *ngIf="form.get('url').touched && form.get('url').invalid"-->
+<!--        class="validation"-->
+<!--      >-->
+<!--        <small *ngIf="form.get('url').errors.required">-->
+<!--          Введите URL адрес-->
+<!--        </small>-->
+<!--      </div>-->
+<!--    </div>-->
+
+    <div>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        class="btn-block"
+        [disabled]="form.invalid"
+      >Создать категорию</button>
+      <br/>
+      <button
+        style="margin-top: 10px"
+        type="button"
+        (click)="backLink()"
+        mat-stroked-button
+        color="primary"
+        class="btn-block"
+      >Вернуться назад</button>
+
+    </div>
+
+
+  </form>
+
+
+</div>
+

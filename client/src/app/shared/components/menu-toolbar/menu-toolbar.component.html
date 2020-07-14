@@ -1,0 +1,21 @@
+<mat-toolbar color="white" class="menu-toolbar">
+  <h1 ><a href="/">SICILIA</a></h1>
+  <span class="navbar"></span>
+  <h1 ><a href="/admin">ADMIN PANEL</a></h1>
+<!--  <div>-->
+<!--    <a mat-button *ngFor="let category of categories" [routerLink]="['/menu']" fragment="{{category.name}}">-->
+<!--      {{category.name.toUpperCase()}}-->
+<!--    </a>-->
+<!--  </div>-->
+  <span class="navbar"></span>
+  <div appSwitchTemplate (switchTemplate)="onShowCart($event)">
+    <button  [routerLink]="['/cart']" mat-icon-button color="primary">
+      <mat-icon  matBadge="{{countProductInCart$ | async }}" matBadgeColor="warn">shopping_basket</mat-icon>
+    </button>
+  </div>
+  <app-view-cart
+    appSwitchTemplate
+    (switchTemplate)="onShowCart($event)"
+    *ngIf="cartTemplateDisplaySwitch && countProductInCart$"
+  ></app-view-cart>
+</mat-toolbar>

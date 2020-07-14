@@ -1,0 +1,33 @@
+<mat-card class="example-card"  >
+  <mat-card-header style="margin: 0">
+    <mat-card-title textDecorate [routerLink]="['/menu', category, id]" style="cursor: pointer">{{ title ? title : 'title' }}</mat-card-title>
+    <mat-card-subtitle>{{ subtitle ? subtitle : 'subtitle' }}</mat-card-subtitle>
+  </mat-card-header>
+  <img *ngIf="imageLink.length; else basicImage" style="cursor: pointer"  [routerLink]="['/menu', category, id]" mat-card-image src="{{ imageLink }}" alt="{{title}}">
+  <ng-template #basicImage>
+    <img style="cursor: pointer"  [routerLink]="['/menu', category, id]" mat-card-image src="../../../../assets/image/patternCover.png" alt="{{title}}">
+  </ng-template>
+  <mat-card-content style="min-height: 60px">
+    <p>
+      {{ description ? description : 'description'  }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="action-card" style="margin-left: 10px;">
+      <div class="priceContent">
+        <span class="price" [ngClass]="{priceSale: sale}">{{price ? price : 0 }} ₽</span>
+        <span class="sale" *ngIf="sale">{{sale ? sale : 0}} ₽</span>
+      </div>
+      <div>
+        <div>
+          <app-counter (onChanged)="onChangedCounter($event, id)" *ngIf="counter > 0" [counter]="counter"></app-counter>
+          <button [disabled]="showMode" *ngIf="counter == 0" mat-stroked-button color="primary" (click)="addToCart()">В КОРЗИНУ</button>
+        </div>
+      </div>
+
+
+    </div>
+
+  </mat-card-actions>
+</mat-card>
+

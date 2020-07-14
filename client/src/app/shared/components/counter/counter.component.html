@@ -1,0 +1,17 @@
+<div class="counter-container">
+  <div class="row">
+    <div class=" column">
+      <button [disabled]="counter === 1" color="primary" style="height: 28px;" (click)="changeCounter(false)">
+        <mat-icon>remove</mat-icon>
+      </button>
+    </div>
+    <div class="counter-center column">
+      {{counter}}
+    </div>
+    <div class="column" >
+      <button  color="primary" style="height: 28px;" (click)="changeCounter(true)">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

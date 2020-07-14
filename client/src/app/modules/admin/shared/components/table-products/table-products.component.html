@@ -1,0 +1,49 @@
+<div *ngIf="products.length; else loading">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Search" [(ngModel)]="searchStr">
+    <button mat-button *ngIf="searchStr" matSuffix mat-icon-button aria-label="Clear" (click)="searchStr=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <table>
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Subtitle</th>
+      <th width="320px">Description</th>
+      <th>Image</th>
+      <th>Date</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of products | searchProduct:searchStr; let idx = index">
+      <!--    <tr *ngFor="let product-page of products | searchProduct: searchStr; let idx = index">-->
+      <td>{{ idx + 1 }}</td>
+      <td>{{ product.title }}</td>
+      <td>{{ product.subtitle }}</td>
+      <td width="320px">{{ product.description }}</td>
+      <div style="width: 60px; height: 60px">
+        <img  src="{{ product.img }}" alt="">
+      </div>
+      <td>{{ product.date | date:'medium' }}</td>
+      <td>
+        <button
+          class="btn btn-primary open"
+          [routerLink]="['/admin', product.category , product.id, 'edit']"
+        >
+          Открыть
+        </button>
+        <button class="btn btn-danger" (click)="remove(product)">Удалить</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<ng-template #loading>
+  <p class="text-center">Loading...</p>
+</ng-template>
