@@ -1,5 +1,6 @@
 const Order = require('../models/Order')
 const errorHandler = require('../utils/errorHandler')
+const bcrypt = require('bcryptjs')
 
 // (get) localhost:5000/api/order?offset=2&limit=5
 module.exports.getAll = async function(req, res) {
@@ -41,19 +42,27 @@ module.exports.getAll = async function(req, res) {
   }
 }
 
-module.exports.create = async function(req, res) {
+module.exports.create = function(req, res) {
   try {
-    const lastOrder = await Order
-      .findOne({user: req.user.id})
-      .sort({date: -1})
 
-    const maxOrder = lastOrder ? lastOrder.order : 0
+    // const salt = bcrypt.genSaltSync(10)
+    let user = '5f058217c394ed38981b855c'
+    let orderClient = 1
+    if (req.user) {
+      const lastOrder = Order
+          .findOne({user: req.user.id})
+          .sort({date: -1})
 
-    const order = await new Order({
-      list: req.body.list,
-      user: req.user.id,
-      order: maxOrder + 1
-    }).save()
+      const maxOrder = lastOrder ? lastOrder.order : 0
+      orderClient = maxOrder + 1
+      user = req.user.id
+    }
+      const order = new Order({
+        list: req.body.list,
+        user: user,
+        order: orderClient
+      }).save()
+
 
     res.status(201).json(order)
   } catch (e) {
