@@ -1,4 +1,5 @@
-module.exports = {
-  mongoURI: 'mongodb+srv://root:nsUceFgPLETvYC8m@cluster0.godii.mongodb.net/MEAN-PIZZA?w=majority',
-  jwt: 'dev-jwt'
+if (process.env.NODE_ENV === 'production') {
+  module.exports = require('./keys.prod')
+} else {
+  module.exports = require('./keys.dev')
 }
