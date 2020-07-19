@@ -1,4 +1,4 @@
-<div class="content" *ngIf="categories$ | async as categories; else loading">
+<div class="content--groups" *ngIf="categories$ | async as categories; else loading">
   <app-group-product *ngFor="let category of categories" [category]="category"></app-group-product>
 </div>
 

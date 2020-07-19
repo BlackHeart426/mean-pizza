@@ -29,11 +29,12 @@ export class AuthService {
   }
 
   loginAdmin(user: User): Observable<{token: string}> {
+    console.log('loginAdmin')
     return this.http.post<{token: string}>(`/api/auth/admin/login`, user)
       .pipe(
         tap(
           ({token}) => {
-            console.log('123')
+            console.log('loginAdminToken')
             localStorage.setItem('auth-token', token)
             this.setToken(token)
           }

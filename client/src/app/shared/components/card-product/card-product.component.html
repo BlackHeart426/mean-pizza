@@ -1,33 +1,33 @@
-<mat-card class="example-card"  >
-  <mat-card-header style="margin: 0">
-    <mat-card-title textDecorate [routerLink]="['/menu', category, id]" style="cursor: pointer">{{ title ? title : 'title' }}</mat-card-title>
-    <mat-card-subtitle>{{ subtitle ? subtitle : 'subtitle' }}</mat-card-subtitle>
+<mat-card class="example-card product-card"  >
+  <mat-card-header class="product-cart__header">
+    <mat-card-title class="product-cart__title" textDecorate [routerLink]="['/menu', category, id]" style="cursor: pointer">{{ title ? title : 'title' }}</mat-card-title>
+    <mat-card-subtitle class="product-cart__subtitle">{{ subtitle ? subtitle : 'subtitle' }}</mat-card-subtitle>
   </mat-card-header>
   <img *ngIf="imageLink.length; else basicImage" style="cursor: pointer"  [routerLink]="['/menu', category, id]" mat-card-image src="{{ imageLink }}" alt="{{title}}">
+
   <ng-template #basicImage>
     <img style="cursor: pointer"  [routerLink]="['/menu', category, id]" mat-card-image src="../../../../assets/image/patternCover.png" alt="{{title}}">
   </ng-template>
-  <mat-card-content style="min-height: 60px">
+
+  <mat-card-content class="product-cart__content">
     <p>
       {{ description ? description : 'description'  }}
     </p>
   </mat-card-content>
-  <mat-card-actions>
+  <mat-card-actions class="product
+  .-cart__actions">
     <div class="action-card" style="margin-left: 10px;">
-      <div class="priceContent">
-        <span class="price" [ngClass]="{priceSale: sale}">{{price ? price : 0 }} ₽</span>
-        <span class="sale" *ngIf="sale">{{sale ? sale : 0}} ₽</span>
+      <div class="product-cart__price">
+        <span [ngClass]="{priceSale: sale}">{{price ? price : 0 }} ₽</span>
+        <span class="sale product-cart__sale" *ngIf="sale">{{sale ? sale : 0}} ₽</span>
       </div>
       <div>
-        <div>
+        <div class="product-cart__button">
           <app-counter (onChanged)="onChangedCounter($event, id)" *ngIf="counter > 0" [counter]="counter"></app-counter>
           <button [disabled]="showMode" *ngIf="counter == 0" mat-stroked-button color="primary" (click)="addToCart()">В КОРЗИНУ</button>
         </div>
       </div>
-
-
     </div>
-
   </mat-card-actions>
 </mat-card>
 

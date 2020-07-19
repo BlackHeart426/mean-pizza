@@ -1,14 +1,14 @@
-<div class="counter-container">
+<div class="container-counter counter">
   <div class="row">
-    <div class=" column">
+    <div class=" column counter__minus">
       <button [disabled]="counter === 1" color="primary" style="height: 28px;" (click)="changeCounter(false)">
         <mat-icon>remove</mat-icon>
       </button>
     </div>
-    <div class="counter-center column">
+    <div class="counter__center center column">
       {{counter}}
     </div>
-    <div class="column" >
+    <div class="column counter__plus" >
       <button  color="primary" style="height: 28px;" (click)="changeCounter(true)">
         <mat-icon>add</mat-icon>
       </button>

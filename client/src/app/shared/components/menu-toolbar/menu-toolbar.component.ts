@@ -18,14 +18,14 @@ export class MenuToolbarComponent implements OnInit, OnDestroy {
 
   constructor(
     private cartService: CartService,
-    private categoriesService: CategoriesService
+    // private categoriesService: CategoriesService
   ) { }
 
   ngOnInit(): void {
     this.countProductInCart$ = this.cartService.getCountCart()
-    this.pSub = this.categoriesService.fetch().subscribe(categories => {
-      this.categories = categories
-    })
+    // this.pSub = this.categoriesService.fetch().subscribe(categories => {
+    //   this.categories = categories
+    // })
   }
 
   ngOnDestroy(): void {
