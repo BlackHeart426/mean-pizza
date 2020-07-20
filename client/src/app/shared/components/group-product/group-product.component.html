@@ -1,7 +1,7 @@
 <div class="group" *ngIf="products.length; else loading" [attr.id]="category._id">
   <mat-card-title class="group__title" #target>{{category.name}}</mat-card-title>
-  <mat-grid-list cols="4" rowHeight="600px">
-    <div class="group__items" *ngFor="let product of products">
+  <div class="group__items">
+    <div *ngFor="let product of products">
       <app-card-product
         [subtitle]="product.subtitle"
         [imageLink]="product.imageSrc"
@@ -14,6 +14,8 @@
         [counter]="getCounter(listProductInCart$ | async, product._id)"
       ></app-card-product>
     </div>
+  </div>
+
 <!--    <mat-grid-tile *ngFor="let product of products">-->
 <!--      <app-card-product-->
 <!--        [subtitle]="product.subtitle"-->
@@ -27,7 +29,6 @@
 <!--        [counter]="getCounter(listProductInCart$ | async, product._id)"-->
 <!--      ></app-card-product>-->
 <!--    </mat-grid-tile>-->
-  </mat-grid-list>
 
 </div>
 <ng-template #loading>
