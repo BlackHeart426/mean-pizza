@@ -1,40 +1,42 @@
-<div class="product-content" *ngIf="!loading">
-  <div
-    class="left left-content"
+<div class="product-container" *ngIf="!loading">
+  <div class="product-content">
+    <div
+      class="product-content__left left-content"
     >
-    <img *ngIf="product.imageSrc.length; else basicImage" style="cursor: pointer;background-repeat: no-repeat;" mat-card-image src="{{ product.imageSrc }}">
-    <ng-template #basicImage>
-      <img style="cursor: pointer"mat-card-image src="../../../../assets/image/patternCover.png">
-    </ng-template>
-  </div>
-  <div class="right">
-    <div class="content">
-      <mat-card-title class="title">
-        {{product.name}}
-      </mat-card-title>
-
-      <div class="subtitle">
-        <mat-card-subtitle>
-          {{product.subtitle}}
-        </mat-card-subtitle>
-      </div>
-      <div class="description">
-        {{product.description}}
-      </div>
-
+      <img *ngIf="product.imageSrc.length; else basicImage" style="cursor: pointer;background-repeat: no-repeat;" mat-card-image src="{{ product.imageSrc }}">
+      <ng-template #basicImage>
+        <img style="cursor: pointer"mat-card-image src="../../../../assets/image/patternCover.png">
+      </ng-template>
     </div>
-    <div class="action">
-      <a [routerLink]="['/menu']" mat-stroked-button >Вернуться в меню</a>
-      <div class="action-content">
-        <div class="price" [ngClass]="{priceSale: product.sale}">
-          {{product.cost}}  ₽
-        </div>
-        <div class="sale" *ngIf="product.sale">
-          {{product.sale}}  ₽
-        </div>
-        <button mat-stroked-button color="primary" (click)="addToCart(product)">В корзину</button>
-      </div>
+    <div class="product-content__right">
+      <div >
+        <mat-card-title class="product-content__title">
+          {{product.name}}
+        </mat-card-title>
 
+        <div class="product-content__subtitle">
+          <mat-card-subtitle>
+            {{product.subtitle}}
+          </mat-card-subtitle>
+        </div>
+        <div class="product-content__description">
+          {{product.description}}
+        </div>
+
+      </div>
+      <div class="product-content__actions">
+        <a [routerLink]="['/menu']" mat-stroked-button >Вернуться в меню</a>
+        <div class="product-content__action-content">
+          <div class="product-content__price" [ngClass]="{priceSale: product.sale}">
+            {{product.cost}}  ₽
+          </div>
+          <div class="product-content__sale" *ngIf="product.sale">
+            {{product.sale}}  ₽
+          </div>
+          <button mat-stroked-button color="primary" (click)="addToCart(product)">В корзину</button>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
