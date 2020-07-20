@@ -103,3 +103,20 @@
   -webkit-transition: background-color .1s ease;
   transition: background-color .1s ease;
 }
+
+
+.counter {
+
+  width: 100px;
+  height: 36px;
+
+  &__minus {
+    width: 33%;
+  }
+  &__center {
+    width: 33%;
+  }
+  &__plus {
+    width: 33%;
+  }
+}
