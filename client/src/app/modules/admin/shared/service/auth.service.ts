@@ -74,7 +74,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return !!this.getToken
+    return !!this.getToken()
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
