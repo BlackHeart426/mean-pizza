@@ -24,7 +24,10 @@
       <div>
         <div class="product-card__button">
           <app-counter (onChanged)="onChangedCounter($event, id)" *ngIf="counter > 0" [counter]="counter"></app-counter>
-          <button [disabled]="showMode" *ngIf="counter == 0" mat-stroked-button color="primary" (click)="addToCart()">В КОРЗИНУ</button>
+          <div *ngIf="counter == 0"  [disabled]="showMode" class="button pay-btn"  (click)="addToCart()">
+            В КОРЗИНУ
+          </div>
+<!--          <button [disabled]="showMode" *ngIf="counter == 0" mat-stroked-button color="primary" (click)="addToCart()">В КОРЗИНУ</button>-->
         </div>
       </div>
     </div>

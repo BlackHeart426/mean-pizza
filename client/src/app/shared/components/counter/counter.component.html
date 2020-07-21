@@ -1,14 +1,17 @@
 <div class="container-counter counter">
-    <div class=" column counter__minus">
-      <button [disabled]="counter === 1" color="primary" style="height: 28px;" (click)="changeCounter(false)">
+    <div class=" column">
+      <button
+        class="button button--outline button--circle cart__item-count-minus"
+        [disabled]="counter === 1"
+        (click)="changeCounter(false)">
         <mat-icon>remove</mat-icon>
       </button>
     </div>
     <div class="counter__center center column">
       {{counter}}
     </div>
-    <div class="column counter__plus" >
-      <button  color="primary" style="height: 28px;" (click)="changeCounter(true)">
+    <div class="column" >
+      <button class="button button--outline button--circle cart__item-count-plus" (click)="changeCounter(true)">
         <mat-icon>add</mat-icon>
       </button>
     </div>
