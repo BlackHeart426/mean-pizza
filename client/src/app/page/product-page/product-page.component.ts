@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {ProductsService} from '../../shared/service/products.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
-import {Product} from '../../shared/interface';
-import {CartService} from '../../shared/service/cart.service';
+import {CartItem, Product} from '../../shared/interface';
 import {AlertService} from '../../modules/admin/shared/service/alert.service';
 import {PositionsService} from '../../modules/admin/shared/service/positions.service';
 import {Position} from '../../modules/admin/shared/interfaces';
+import {CartService} from "../../shared/service/cart.service";
 
 @Component({
   selector: 'app-product-page',
@@ -15,7 +15,7 @@ import {Position} from '../../modules/admin/shared/interfaces';
 })
 export class ProductPageComponent implements OnInit {
 
-  product: Position
+  product: CartItem
   loading = true
 
   constructor(
@@ -33,19 +33,26 @@ export class ProductPageComponent implements OnInit {
           return this.positionsService.getById(params.id)
         })
       ).subscribe((position: Position) => {
-         this.loading = false;
-         this.product = {
-            ...position
-         }
+      this.loading = false;
+      this.product = {
+        name: position.name,
+        counter: position.counter,
+        image: position.imageSrc,
+        description: position.description,
+        price: position.cost,
+        sale: position.sale,
+        uuid: position._id,
+      }
     })
   }
 
   getUrl() {
-    return "url("+this.product.imageSrc+"), url('/assets/image/patternCover.png')"
+    return "url("+this.product.image+"), url('/assets/image/patternCover.png')"
   }
 
-  addToCart(product: Position) {
-    // this.cartService.addToCart(product)
+  addToCart(product: CartItem): void {
+    console.log(product)
+    this.cartService.addToCart(product)
     this.alertService.success('Товар добален')
   }
 }

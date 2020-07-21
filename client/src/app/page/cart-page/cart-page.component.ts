@@ -44,6 +44,10 @@ export class CartPageComponent implements OnInit {
     this.router.navigate(['/menu'])
   }
 
+  clearCart() {
+    this.itemsCart = this.cartService.clearCart()
+  }
+
   onChanged(increased: boolean, uuid: string) {
     if (increased) {
       this.cartService.increaseCartItem(uuid)
@@ -85,6 +89,7 @@ export class CartPageComponent implements OnInit {
     this.oSub = this.ordersService.create(order).subscribe(
       newOrder => {
         MaterialService.toast(`Заказ был добавлен. Ожидайте звонка оператора`)
+        this.clearCart()
       },
       error => MaterialService.toast(error.error.message),
       () => {

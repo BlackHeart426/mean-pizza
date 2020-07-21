@@ -3,7 +3,7 @@
     <div
       class="product-content__left left-content"
     >
-      <img *ngIf="product.imageSrc.length; else basicImage" style="cursor: pointer;background-repeat: no-repeat;" mat-card-image src="{{ product.imageSrc }}">
+      <img *ngIf="product.image.length; else basicImage" style="cursor: pointer;background-repeat: no-repeat;" mat-card-image src="{{ product.image }}">
       <ng-template #basicImage>
         <img style="cursor: pointer"mat-card-image src="../../../../assets/image/patternCover.png">
       </ng-template>
@@ -15,9 +15,9 @@
         </mat-card-title>
 
         <div class="product-content__subtitle">
-          <mat-card-subtitle>
-            {{product.subtitle}}
-          </mat-card-subtitle>
+<!--          <mat-card-subtitle>-->
+<!--            {{product.subtitle}}-->
+<!--          </mat-card-subtitle>-->
         </div>
         <div class="product-content__description">
           {{product.description}}
@@ -28,7 +28,7 @@
         <a [routerLink]="['/menu']" mat-stroked-button >Вернуться в меню</a>
         <div class="product-content__action-content">
           <div class="product-content__price" [ngClass]="{priceSale: product.sale}">
-            {{product.cost}}  ₽
+            {{product.price}}  ₽
           </div>
           <div class="product-content__sale" *ngIf="product.sale">
             {{product.sale}}  ₽
@@ -43,5 +43,5 @@
 
 
 <div *ngIf="loading">
-  Загрузка данных...
+  <app-loader></app-loader>
 </div>

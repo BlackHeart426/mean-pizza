@@ -3,10 +3,11 @@
     <mat-card-title class="product-card__title" textDecorate [routerLink]="['/menu', category, id]" style="cursor: pointer">{{ title ? title : 'title' }}</mat-card-title>
     <mat-card-subtitle class="product-card__subtitle">{{ subtitle ? subtitle : 'subtitle' }}</mat-card-subtitle>
   </mat-card-header>
-  <img *ngIf="imageLink.length; else basicImage"  [routerLink]="['/menu', category, id]" mat-card-image src="{{ imageLink }}" alt="{{title}}">
+  <img *ngIf="!imageLink.length; else basicImage" [routerLink]="['/menu', category, id]" mat-card-image src="../../../../assets/image/patternCover.png" alt="{{title}}">
 
   <ng-template #basicImage>
-    <img style="cursor: pointer"  [routerLink]="['/menu', category, id]" mat-card-image src="../../../../assets/image/patternCover.png" alt="{{title}}">
+      <img   [routerLink]="['/menu', category, id]" mat-card-image src="{{ imageLink }}" alt="{{title}}">
+
   </ng-template>
 
   <mat-card-content class="product-card__content">
