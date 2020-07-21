@@ -1,74 +1,103 @@
-<div class="cart-container">
-  <div class="cart-content">
-    <div class="price">Корзина</div>
+<div class="container-cart">
+  <div class="cart">
 
-    <div class="cart-item" *ngFor="let item of itemsCart">
-      <div class="row">
-        <div class="cart-item-img column-item-left">
-          <img src="{{item.image}}" height="170px" width="200px" style="border-radius: 5px">
+    <div *ngIf="itemsCart.length; else emptyCart">
+      <div class="cart__top">
+        <h2 class="cart__title">Корзина</h2>
+        <div class="cart__clear">
+          <mat-icon class="cart__clear-icon">delete</mat-icon>
+          <span>Очистить корзину</span>
         </div>
-        <div class="cart-item-content column-item-center">
-          <div class="title-item">
-            <div class="row">
-              <div class="name-item column-item-center">
-                {{ item.name }}
-              </div>
-              <div  class="column">
-                <button mat-icon-button color="warn" (click)="remove(item.uuid)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
+      </div>
 
-            </div>
+      <div class="content__items">
+        <div class="cart__item" *ngFor="let item of itemsCart">
+          <div class="cart__item-img">
+            <img src="{{item.image}}">
           </div>
-          <div class="description-item" style="padding-left: 10px">
-            {{ item.description }}
-          </div>
+          <div class="cart__item-info">
+            <h3>
+              {{ item.name }}
+            </h3>
+            <p>
+              тонкое тесто, 26 см.
+            </p>
 
-        </div>
-        <div class=" column-item-right">
-          <div class="row">
-            <div class="counter-item column-item-left">
+          </div>
+          <div class="cart__item-count">
+            <div class="counter-item">
               <app-counter (onChanged)="onChanged($event, item.uuid)"  *ngIf="item.counter > 0" [counter]="item.counter"></app-counter>
             </div>
-            <div class="action-item column price">
-              {{ item.price * item.counter  }}
-            </div>
           </div>
-
+          <div class="cart__item-price">
+              <b>
+                {{ item.price * item.counter  }}  ₽
+              </b>
+          </div>
+          <div class="cart__item-remove">
+            <button mat-icon-button color="warn" (click)="remove(item.uuid)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
-      <span> </span>
-      <span></span>
-    </div>
-    <ng-template #emptyCart>
-      Товаров в корзине нет
-    </ng-template>
-  </div>
-
-
-</div>
-<div class="footer-cart"  >
-  <div class="counter-persons" style="margin-bottom: 0; padding-top: 5px">
-      <div class="column-left title">Количество персон</div>
-      <div class="column counter">
-        <app-counter (onChanged)="onChangedPerson($event)" [counter]="persons"></app-counter>
-      </div>
-    </div>
-    <mat-divider></mat-divider>
-    <div class="footer-action">
-      <div class="row">
-        <div class="column-left title">
-          <button mat-stroked-button color="primary" class="btn-mat " (click)="backMenu()">Вернуться в меню</button>
+      <div class="cart__actions">
+        <div class="cart__actions-details">
+          <span>
+            Всего пицц:
+            <b>
+              {{countProductInCart$ | async }} шт.
+            </b>
+          </span>
+          <span>
+            Сумма заказа:
+            <b>
+              {{netWorthProducts$ | async }} ₽
+            </b>
+          </span>
         </div>
-        <div class="column price">
-          <div>{{netWorthProducts$ | async }} ₽</div>
-        </div>
-        <div class="column">
+        <div class="cart__actions-buttons">
+          <button mat-stroked-button color="#fff" class="btn-mat " (click)="backMenu()">Вернуться в меню</button>
           <button mat-raised-button color="primary" class="btn-mat " (click)="checkout()">Оформить заказ</button>
         </div>
-
       </div>
     </div>
+
+    <ng-template #emptyCart>
+      <div class="cart--empty">
+        <h2>Корзина пустая <icon>😕</icon></h2>
+        <p>
+          Вероятней всего, вы не заказывали ещё пиццу.<br />
+          Для того, чтобы заказать пиццу, перейди на главную страницу.
+        </p>
+        <img src="../../../assets/image/empty-cart.png" alt="Empty cart" />
+        <button mat-stroked-button color="primary" class="btn-mat " (click)="backMenu()">Вернуться в меню</button>
+      </div>
+
+    </ng-template>
   </div>
+</div>
+<!--<div class="footer-cart"  >-->
+<!--  <div class="counter-persons" style="margin-bottom: 0; padding-top: 5px">-->
+<!--      <div class="column-left title">Количество персон</div>-->
+<!--      <div class="column counter">-->
+<!--        <app-counter (onChanged)="onChangedPerson($event)" [counter]="persons"></app-counter>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <mat-divider></mat-divider>-->
+<!--    <div class="footer-action">-->
+<!--      <div class="row">-->
+<!--        <div class="column-left title">-->
+<!--          <button mat-stroked-button color="primary" class="btn-mat " (click)="backMenu()">Вернуться в меню</button>-->
+<!--        </div>-->
+<!--        <div class="column price">-->
+<!--          <div>{{netWorthProducts$ | async }} ₽</div>-->
+<!--        </div>-->
+<!--        <div class="column">-->
+<!--          <button mat-raised-button color="primary" class="btn-mat " (click)="checkout()">Оформить заказ</button>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 
