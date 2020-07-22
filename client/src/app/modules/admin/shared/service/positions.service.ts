@@ -41,7 +41,6 @@ export class PositionsService {
   update(position: Position, image: File): Observable<Position> {
 
     const fd = new FormData()
-
     if (image) {
       fd.append('image', image, image.name)
     }
@@ -50,6 +49,13 @@ export class PositionsService {
     fd.append('description', position.description)
     fd.append('sale', position.sale)
     fd.append('cost', position.cost)
+    console.log(position)
+    this.http.patch<Position>(`/api/position/${position._id}`, fd).subscribe(
+      item => {
+          console.log('123')
+        },
+      () => {
+        console.log('error')})
     return this.http.patch<Position>(`/api/position/${position._id}`, fd)
   }
 

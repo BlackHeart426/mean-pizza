@@ -9,7 +9,6 @@
   --dark-color: #333333;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
-  --success-color: #28a745;
 }
 
 * {
@@ -353,7 +352,7 @@ $duration: 0.15s;
   display: inline-block;
   background-color: var(--primary-color);
   border-radius: 5px;
-  padding: 5px 20px;
+  padding: 7px 20px;
   min-width: 100px;
   text-align: center;
   cursor: pointer;

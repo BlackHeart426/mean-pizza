@@ -63,7 +63,6 @@ module.exports.remove = async function(req, res) {
 }
 
 module.exports.update = async function(req, res) {
-  console.log(req.file.path)
   const updated = {
     name: req.body.name,
     description: req.body.description,

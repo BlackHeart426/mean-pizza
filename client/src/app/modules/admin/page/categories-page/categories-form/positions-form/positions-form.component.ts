@@ -92,7 +92,8 @@ export class PositionsFormComponent implements OnInit, AfterViewInit, OnDestroy 
     this.modal.close()
   }
 
-  onSubmit() {
+  onSubmit(): void {
+
     this.form.disable()
 
     const newPosition: Position = {
