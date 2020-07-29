@@ -31,7 +31,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
   logout(event: MouseEvent): void {
     event.preventDefault()
     this.auth.logout()
-    this.router.navigate(['/login'])
+    this.router.navigate(['/admin', 'login'])
   }
 
   ngAfterViewInit(): void {
