@@ -33,9 +33,16 @@
           <div class="product-content__sale" *ngIf="product.sale">
             {{product.sale}}  ₽
           </div>
-          <div class="button pay-btn" (click)="addToCart(product)">
-            В корзину
+          <div class="product-card__button">
+            <app-counter (onChanged)="onChangedCounter($event, product.uuid)" *ngIf="getCounter(listProductInCart$ | async, product.uuid) > 0" [counter]="getCounter(listProductInCart$ | async, product.uuid)"></app-counter>
+            <buttonb *ngIf="getCounter(listProductInCart$ | async, product.uuid) == 0"  class="button pay-btn"  (click)="addToCart(product)">
+              В КОРЗИНУ
+            </buttonb>
+            <!--          <button [disabled]="showMode" *ngIf="counter == 0" mat-stroked-button color="primary" (click)="addToCart()">В КОРЗИНУ</button>-->
           </div>
+<!--          <div class="button pay-btn" (click)="addToCart(product)">-->
+<!--            В корзину-->
+<!--          </div>-->
         </div>
 
       </div>

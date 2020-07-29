@@ -6,7 +6,8 @@ import {CartItem, Product} from '../../shared/interface';
 import {AlertService} from '../../modules/admin/shared/service/alert.service';
 import {PositionsService} from '../../modules/admin/shared/service/positions.service';
 import {Position} from '../../modules/admin/shared/interfaces';
-import {CartService} from "../../shared/service/cart.service";
+import {CartService} from '../../shared/service/cart.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-product-page',
@@ -17,6 +18,7 @@ export class ProductPageComponent implements OnInit {
 
   product: CartItem
   loading = true
+  listProductInCart$: Observable<any>
 
   constructor(
     private positionsService: PositionsService,
@@ -27,6 +29,7 @@ export class ProductPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.listProductInCart$ = this.cartService.getItemsCart()
     this.route.params
       .pipe(
         switchMap((params: Params) => {
@@ -44,6 +47,26 @@ export class ProductPageComponent implements OnInit {
         uuid: position._id,
       }
     })
+  }
+
+  getCounter(items: CartItem[], uuid): number {
+    const it = items.reduce((map, obj: CartItem) => {
+      map[obj.uuid] = obj;
+      return map;
+    }, {});
+    if (it[uuid]) {
+      return it[uuid].counter
+    } else {
+      return 0
+    }
+  }
+
+  onChangedCounter(increased: boolean, uuid: string): void {
+    if (increased) {
+      this.cartService.increaseCartItem(uuid)
+    } else {
+      this.cartService.decreaseCartItem(uuid)
+    }
   }
 
   getUrl() {

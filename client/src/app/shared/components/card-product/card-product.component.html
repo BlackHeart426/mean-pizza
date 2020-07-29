@@ -16,7 +16,7 @@
     </p>
   </mat-card-content>
   <mat-card-actions class="product-card__actions">
-    <div class="action-card" style="margin-left: 10px;">
+    <div class="action-card">
       <div class="product-card__price">
         <span [ngClass]="{priceSale: sale}">{{price ? price : 0 }} ₽</span>
         <span class="sale product-card__sale" *ngIf="sale">{{sale ? sale : 0}} ₽</span>
