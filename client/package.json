@@ -26,7 +26,7 @@
     "@angular/router": "~10.0.0",
     "@ngmodule/material-carousel": "^0.6.0",
     "chart": "^0.1.2",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "kill-port": "^1.6.0",
     "materialize-css": "^1.0.0-rc.2",
     "rxjs": "~6.5.5",
