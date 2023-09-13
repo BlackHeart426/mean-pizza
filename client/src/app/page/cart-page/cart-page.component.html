@@ -1,6 +1,5 @@
 <div class="container-cart">
   <div class="cart">
-
     <div *ngIf="itemsCart.length; else emptyCart">
       <div class="cart__top">
         <h2 class="cart__title">Корзина</h2>
@@ -13,26 +12,25 @@
       <div class="content__items">
         <div class="cart__item" *ngFor="let item of itemsCart">
           <div class="cart__item-img">
-            <img src="{{item.image}}">
+            <img src="{{ item.image }}" />
           </div>
           <div class="cart__item-info">
             <h3>
               {{ item.name }}
             </h3>
-            <p>
-              тонкое тесто, 26 см.
-            </p>
-
+            <p>тонкое тесто, 26 см.</p>
           </div>
           <div class="cart__item-count">
             <div class="counter-item">
-              <app-counter (onChanged)="onChanged($event, item.uuid)"  *ngIf="item.counter > 0" [counter]="item.counter"></app-counter>
+              <app-counter
+                (onChanged)="onChanged($event, item.uuid)"
+                *ngIf="item.counter > 0"
+                [counter]="item.counter"
+              ></app-counter>
             </div>
           </div>
           <div class="cart__item-price">
-              <b>
-                {{ item.price * item.counter  }}  ₽
-              </b>
+            <b> {{ item.price * item.counter }} ₽ </b>
           </div>
           <div class="cart__item-remove">
             <button mat-icon-button color="warn" (click)="remove(item.uuid)">
@@ -45,20 +43,30 @@
         <div class="cart__actions-details">
           <span>
             Всего пицц:
-            <b>
-              {{countProductInCart$ | async }} шт.
-            </b>
+            <b> {{ countProductInCart$ | async }} шт. </b>
           </span>
           <span>
             Сумма заказа:
-            <b>
-              {{netWorthProducts$ | async }} ₽
-            </b>
+            <b> {{ netWorthProducts$ | async }} ₽ </b>
           </span>
         </div>
         <div class="cart__actions-buttons">
-          <button mat-stroked-button color="#fff" class="btn-mat " (click)="backMenu()">Вернуться в меню</button>
-          <button mat-raised-button color="primary" class="btn-mat " (click)="checkout()">Оформить заказ</button>
+          <button
+            mat-stroked-button
+            color="#fff"
+            class="btn-mat"
+            (click)="backMenu()"
+          >
+            Вернуться в меню
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            class="btn-mat"
+            (click)="checkout()"
+          >
+            Оформить заказ
+          </button>
         </div>
       </div>
     </div>
@@ -71,9 +79,15 @@
           Для того, чтобы заказать пиццу, перейди на главную страницу.
         </p>
         <img src="../../../assets/image/empty-cart.png" alt="Empty cart" />
-        <button mat-stroked-button color="primary" class="btn-mat " (click)="backMenu()">Вернуться в меню</button>
+        <button
+          mat-stroked-button
+          color="primary"
+          class="btn-mat"
+          (click)="backMenu()"
+        >
+          Вернуться в меню
+        </button>
       </div>
-
     </ng-template>
   </div>
 </div>
@@ -100,4 +114,3 @@
 <!--      </div>-->
 <!--    </div>-->
 <!--  </div>-->
-

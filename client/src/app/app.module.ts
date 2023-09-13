@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {NgModule, Provider} from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { SigninPageComponent } from './page/signin-page/signin-page.component';
@@ -15,30 +15,30 @@ import { CarouselComponent } from './shared/components/carousel/carousel.compone
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { GroupProductComponent } from './shared/components/group-product/group-product.component';
-import { AppRoutingModule} from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { MenuPageComponent } from './page/menu-page/menu-page.component';
 import { ProductPageComponent } from './page/product-page/product-page.component';
 import { NotfoundPageComponent } from './page/notfound-page/notfound-page.component';
 import { ContentComponent } from './shared/components/content/content.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule} from '@angular/forms';
-import { SharedModule} from './shared/shared.module';
-import { HTTP_INTERCEPTORS} from '@angular/common/http';
-import { AuthInterceptor} from './modules/admin/shared/classes/auth.interceptor';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from './shared/shared.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './modules/admin/shared/classes/auth.interceptor';
 import { AnalyticsPageComponent } from './modules/admin/page/analitics-page/analytics-page.component';
 import { HistoryPageComponent } from './modules/admin/page/history-page/history-page.component';
 import { OrderPageComponent } from './modules/admin/page/order-page/order-page.component';
 import { OverviewPageComponent } from './modules/admin/page/overview-page/overview-page.component';
 import { CategoriesFormComponent } from './modules/admin/page/categories-page/categories-form/categories-form.component';
 import { PositionsFormComponent } from './modules/admin/page/categories-page/categories-form/positions-form/positions-form.component';
-import {MenuContainerComponent} from './shared/components/menu-container/menu-container.component';
-import {AdminModule} from './modules/admin/admin.module';
+import { MenuContainerComponent } from './shared/components/menu-container/menu-container.component';
+import { AdminModule } from './modules/admin/admin.module';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
   multi: true,
-  useClass: AuthInterceptor
-}
+  useClass: AuthInterceptor,
+};
 
 @NgModule({
   declarations: [
@@ -74,12 +74,10 @@ const INTERCEPTOR_PROVIDER: Provider = {
     BrowserAnimationsModule,
     ReactiveFormsModule,
     SharedModule,
-    AdminModule
+    AdminModule,
   ],
-  providers: [
-    INTERCEPTOR_PROVIDER,
-  ],
+  providers: [INTERCEPTOR_PROVIDER],
   exports: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
